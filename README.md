@@ -7,7 +7,7 @@ APPL is a C++ implementation of the SARSOP algorithm <sup>1</sup>, using the fac
 
 [1] [**SARSOP: Efficient point-based POMDP planning by approximating optimally reachable belief spaces.**](http://www.roboticsproceedings.org/rss04/p9.pdf) *H. Kurniawati, D. Hsu, and W.S. Lee*. In Proc. Robotics: Science and Systems, 2008.
 
-[2] [**POMDPs for robotic tasks with mixed observability.**](http://www.roboticsproceedings.org/rss05/p26.pdf) *S.C.W. Ong, S.W. Png, D. Hsu, and W.S. Lee*. In Proc. Robotics: Science and Systems, 2009.
+[2] [**POMDPs for robotic tasks with mixed observability.**](http://www.roboticsproceedings.org/rss05/p26.pdf *S.C.W. Ong, S.W. Png, D. Hsu, and W.S. Lee*. In Proc. Robotics: Science and Systems, 2009.
 
 [Copyright (c) 2008-2010 by National University of Singapore.](http://motion.comp.nus.edu.sg/projects/pomdp/pomdp.html)
 
@@ -25,40 +25,42 @@ APPL is a C++ implementation of the SARSOP algorithm <sup>1</sup>, using the fac
 
 ## Requirements
 
-| Linux | OS X  | Windows  |
-|:------------- |:-------------:|: -----:|
-|[![Build Status](https://semaphoreapp.com/api/v1/projects/d4cca506-99be-44d2-b19e-176f36ec8cf1/128505/shields_badge.svg)](https://semaphoreapp.com/boennemann/badges)| [![Build Status](https://semaphoreapp.com/api/v1/projects/d4cca506-99be-44d2-b19e-176f36ec8cf1/128505/shields_badge.svg)](https://semaphoreapp.com/boennemann/badges) | Coming Soon |
+Tested Operating systems: 
 
-Tested compilers: 
-gcc/g++ 4.0.1 under Linux
-gcc/g++ 4.1.2 under Linux
-                          gcc/g++ 4.2.3 under Linux
-                          gcc/g++ 4.3.2 under Linux
-                          gcc/g++ 4.4.0 under Linux
-                          gcc/g++ 4.8.1 under Linux
-                          gcc/g++ 3.4.4 under Windows(Cygwin)
-                          Microsoft Visual C++ 9 in Visual Studio 2008 with SP1 under Windows
+* Linux 
+* Mac OS X (unofficial) 
+* Windows (unofficial)
 
-* General
+
+
+Tested compilers:
+
+* gcc/g++ 4.0.1 under Linux
+* gcc/g++ 4.1.2 under Linux
+* gcc/g++ 4.2.3 under Linux
+* gcc/g++ 4.3.2 under Linux
+* gcc/g++ 4.4.0 under Linux
+* gcc/g++ 4.8.1 under Linux
+* gcc/g++ 3.4.4 under Windows (Cygwin)
+* Microsoft Visual C++ 9 in Visual Studio 2008 with SP1 under Windows
+
+
+General:
   For gcc/g++ tool chain, GNU make is required for building.
 
-* Mac OS X
-  - For Mac OS X, physical memory size cannot be automatically determined yet. Currently APPL will assume 1G physical memory for Mac OS X. If your physical memory size is different, use "--memory" command-line option to set the correct memory limit.
-
-  - For Mac using PowerPC processor, remove the option "-msse2 -mfpmath=sse" from CFLAGS in src/Makefile.
-
-* Windows
-  The Visual Studio port is experimental. The generated binaries may behave differently from its Linux counterpart.
+Windows:
+The Visual Studio port is experimental. The generated binaries may behave differently from its Linux counterpart.
   For Visual Studio 2010, refer to FAQ at http://bigbird.comp.nus.edu.sg/pmwiki/farm/appl/index.php?n=Main.FAQ for more information
 
 ## Quick Start
 
-* For Linux or Windows (Cygwin), at the top-level directory, type the commands:
+For Linux or Windows (Cygwin), at the top-level directory, type the commands:
 
-    gunzip appl-v0.91.tar.gz
-    tar -xvf appl-v0.91.tar
-    cd appl-v0.91/src
-    make
+```bash
+git clone https://github.com/AdaCompNUS/sarsop.git
+cd sarsop/src
+make
+```
 
 A total of 4 executables are generated in the current directory.
   "pomdpsol" computes a policy.
@@ -143,8 +145,8 @@ Documentation can be found in the directory "doc". See PACKAGE CONTENTS for a de
 
 ## Package Contents
 
-README.txt                                This file
-doc/FAQ.txt				  Frequently asked questions
+```
+doc/FAQ.txt                           Frequently asked questions
 doc/Install.txt                           Detailed compilation instruction
 doc/Usage.txt                             Explanation of command-line options
 doc/POMDP/PomdpFileFormat.html            POMDP file format
@@ -164,15 +166,17 @@ src/Evaluator                             Evaluator
 src/Utils                                 Cross platform utility code
 src/Makefile                              Linux make file
 examples/                                 Example POMDP and POMDPX model files
+```
 
-* Windows-specific files
+Windows specific:
+```
 src/miniposix                             POSIX compliance code for Windows
 src/OfflineSolver/OfflineSolver.vcproj    Visual Studio 2008 Project file for Offline solver
 src/Simulator/Simulator.vcproj            Visual Studio 2008 Project file for Simulator
 src/Evaluator/Evaluator.vcproj            Visual Studio 2008 Project file for Evaluator
 src/PolicyGraph/PolicyGraph.vcproj	  Visual Studio 2008 Project file for Policy graph generator
 src/momdp.sln                             Visual Studio 2008 solution
-
+```
 
 ## Acknowledgements
 
@@ -184,53 +188,45 @@ Please use the issue tracker.
 
 ## Release Notes
 
-9-Jun-2014
-* Fixed compilation issues with gcc version >= 4.7
-* Various matrix operation optimizations
+*9-Jun-2014*
+Fixed compilation issues with gcc version >= 4.7
+Various matrix operation optimizations
 
-6-Mar-2012
-* Added support for intra-slice dependency between variables in POMDPX model. Only edges fully observable state X to partially observable state Y are allowed.
+*6-Mar-2012*
+Added support for intra-slice dependency between variables in POMDPX model. Only edges fully observable state X to partially observable state Y are allowed.
 
-9-Aug-2011, version 0.95
-* IMPORTANT: Fixed a bug that caused pomdpsim to output wrong maximum likelihood unobserved state in log file
-* Fixed a bug in parsing POMDPX file with XML comments (We thank Alex Goldhoorn for bug report and patch)
+*9-Aug-2011, version 0.95*
+IMPORTANT: Fixed a bug that caused pomdpsim to output wrong maximum likelihood unobserved state in log file
+Fixed a bug in parsing POMDPX file with XML comments (We thank Alex Goldhoorn for bug report and patch)
 
-28-Apr-2010, version 0.94
-* Fix a bug that terminal states are not correctly recognized in some model.
+*28-Apr-2010, version 0.94*
+Fix a bug that terminal states are not correctly recognized in some model.
 
-22-Apr-2010, version 0.93
-* Solves MDP specified in POMDPX file format.  Output MDP solution in PolicyX format.
+*22-Apr-2010, version 0.93*
+Solves MDP specified in POMDPX file format.  Output MDP solution in PolicyX format.
 
-12-Mar-2010, version 0.92
+*12-Mar-2010, version 0.92*
+Fixed a bug in POMDPX file format parser when reward is a function of current state R(s',a).
+Output policy file in XML format.
+Added POMDP to POMDPX converter.
 
-* Fixed a bug in POMDPX file format parser when reward is a function of current state R(s',a).
-* Output policy file in XML format.
-* Added POMDP to POMDPX converter.
+*24-Nov2009, version 0.91*
+Fixed several bugs in the POMDPX file format parser.
+Cleaned up POMDPX file format parser code and reduced memory usage.
 
-24-Nov2009, version 0.91
+*04-Sep-2009, version 0.9*
+Substantially restructured the code base.
+Added support for the new factored .pomdpx file format.
+The main POMDP solver now uses the SARSOP algorithm with the MOMDP representation.
+Added policy graph generator.
 
-* Fixed several bugs in the POMDPX file format parser.
-* Cleaned up POMDPX file format parser code and reduced memory usage.
+*01-Feb-2009, version 0.3*
+Added option for memory limit.
+Reduced memory usage.
+Added policy evaluator.
 
+*25-Jul-2008, version 0.2*
+Minor bug fixes.
 
-04-Sep-2009, version 0.9
-
-* Substantially restructured the code base.
-* Added support for the new factored .pomdpx file format.
-* The main POMDP solver now uses the SARSOP algorithm with the MOMDP representation.
-* Added policy graph generator.
-
-
-01-Feb-2009, version 0.3
-
-* Added option for memory limit.
-* Reduced memory usage.
-* Added policy evaluator.
-
-25-Jul-2008, version 0.2
-
-* Minor bug fixes.
-
-01-Jul-2008, version 0.1
-
-* Initial release.
+*01-Jul-2008, version 0.1*
+Initial release.
