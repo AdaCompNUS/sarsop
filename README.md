@@ -3,16 +3,13 @@ Efficient Point-Based POMDP Planning by Approximating
 
 Approximate POMDP Planning (APPL) Toolkit
 
-Copyright (c) 2008-2010 by National University of Singapore.
+APPL is a C++ implementation of the SARSOP algorithm <sup>1</sup>, using the factored MOMDP representation <sup>2</sup>. It takes as input a POMDP model in the POMDP or POMDPX file format and produces a policy file. It also contains a simple simulator for evaluating the quality of the computed policy. 
 
-APPL is a C++ implementation of the SARSOP algorithm [1], using the factored MOMDP representation [2]. It takes as input a POMDP model in the POMDP or POMDPX file format and produces a policy file. It also contains a simple simulator for evaluating the quality of the computed policy. More information can be found at http://motion.comp.nus.edu.sg/projects/pomdp/pomdp.html.
+[1] [**SARSOP: Efficient point-based POMDP planning by approximating optimally reachable belief spaces.**](http://www.roboticsproceedings.org/rss04/p9.pdf) *H. Kurniawati, D. Hsu, and W.S. Lee*. In Proc. Robotics: Science and Systems, 2008.
 
-For bug reports and suggestions, please email <motion@comp.nus.edu.sg>.
+[2] [**POMDPs for robotic tasks with mixed observability.**](http://www.roboticsproceedings.org/rss05/p26.pdf) *S.C.W. Ong, S.W. Png, D. Hsu, and W.S. Lee*. In Proc. Robotics: Science and Systems, 2009.
 
-[1] H. Kurniawati, D. Hsu, and W.S. Lee. SARSOP: Efficient point-based POMDP planning by approximating optimally reachable belief spaces. In Proc. Robotics: Science and Systems, 2008.
-
-[2] S.C.W. Ong, S.W. Png, D. Hsu, and W.S. Lee. POMDPs for robotic tasks with mixed observability. In Proc. Robotics: Science and Systems, 2009.
-
+[Copyright (c) 2008-2010 by National University of Singapore.](http://motion.comp.nus.edu.sg/projects/pomdp/pomdp.html)
 
 
 ## Table of Contents
@@ -22,17 +19,19 @@ For bug reports and suggestions, please email <motion@comp.nus.edu.sg>.
 * [Documentation](#documentation)
 * [Package Contents](#package-contents)
 * [Acknowledgments](#acknowledgements)
+* [Bugs and Suggestions](#bugs-and-suggestions)
 * [Release Notes](#release-notes)
 
 
 ## Requirements
 
-Operating systems:        Linux
-                          Mac OS X (unofficial)
-                          Windows (unofficial)
+| Linux | OS X  | Windows  |
+|:------------- |:-------------:|: -----:|
+|[![Build Status](https://semaphoreapp.com/api/v1/projects/d4cca506-99be-44d2-b19e-176f36ec8cf1/128505/shields_badge.svg)](https://semaphoreapp.com/boennemann/badges)| [![Build Status](https://semaphoreapp.com/api/v1/projects/d4cca506-99be-44d2-b19e-176f36ec8cf1/128505/shields_badge.svg)](https://semaphoreapp.com/boennemann/badges) | Coming Soon |
 
-Tested compilers:         gcc/g++ 4.0.1 under Linux
-                          gcc/g++ 4.1.2 under Linux
+Tested compilers: 
+gcc/g++ 4.0.1 under Linux
+gcc/g++ 4.1.2 under Linux
                           gcc/g++ 4.2.3 under Linux
                           gcc/g++ 4.3.2 under Linux
                           gcc/g++ 4.4.0 under Linux
@@ -179,6 +178,9 @@ src/momdp.sln                             Visual Studio 2008 solution
 
 Part of the APPL toolkit makes use of code based on an early version of ZMDP by Trey Smith (http://www.cs.cmu.edu/~trey/zmdp/). ZMDP in turn uses code from pomdp-solve by Tony Cassandra (http://www.cassandra.org/pomdp/code/index.shtml). The POMDPX parser uses TinyXML by Lee Thomason (http://www.grinninglizard.com/tinyxml/).
 
+
+## Bugs and Suggestions
+Please use the issue tracker.
 
 ## Release Notes
 
