@@ -58,85 +58,104 @@ The Visual Studio port is experimental. The generated binaries may behave differ
 For Linux or Windows (Cygwin), at the top-level directory, type the commands:
 
 ```bash
-git clone https://github.com/AdaCompNUS/sarsop.git
-cd sarsop/src
-make
+$ git clone https://github.com/AdaCompNUS/sarsop.git
+$ cd sarsop/src
+$ make
 ```
 
-A total of 4 executables are generated in the current directory.
-  "pomdpsol" computes a policy.
-  "pomdpsim" is the policy simulator.
-  "pomdpeval" is the policy evaluator.
-  "polgraph" outputs a graphical representation of a policy.
-  "pomdpconvert" converts a POMDP model file to POMDPX file format.
+A total of 4 executables are generated in the current directory:  
 
-Please read "doc/Usage.txt" for command-line options.
+ * `pomdpsol` computes a policy.  
+ * `pomdpsim` is the policy simulator.  
+ * `pomdpeval` is the policy evaluator.  
+ * `polgraph` outputs a graphical representation of a policy.  
+ * `pomdpconvert` converts a POMDP model file to POMDPX file format.  
 
-- Try solving an example problem. Type the command:
-    ./pomdpsol ../examples/POMDPX/Tiger.pomdpx
 
-  The generated policy is written to "out.policy" by default.
+Please read [doc/Usage.txt](doc/Usage.text) for command-line options.
 
-- Try simulating a policy. Type the command:
-    ./pomdpsim --simLen 100 --simNum 1000 --policy-file out.policy ../examples/POMDPX/Tiger.pomdpx
+### Unix
 
+&nbsp;
+1. Try solving an example problem. Type the command:
+```bash
+$ ./pomdpsol ../examples/POMDPX/Tiger.pomdpx
+```
+The generated policy is written to "out.policy" by default.  
+
+&nbsp;
+2. Try simulating a policy. Type the command:
+```bash
+$ ./pomdpsim --simLen 100 --simNum 1000 --policy-file out.policy ../examples/POMDPX/Tiger.pomdpx
+```
   The simulation results are written to the console.
 
-- Try evaluating a policy. Type the command:
-    ./pomdpeval --simLen 100 --simNum 1000 --policy-file out.policy ../examples/POMDPX/Tiger.pomdpx
-
-  The evaluation results are written to the console.
-
-- Try generating a graphical representation of a policy . Type the command:
-    ./polgraph --policy-file out.policy --policy-graph tiger.dot ../examples/POMDPX/Tiger.pomdpx
-
+&nbsp;
+3. Try generating a graphical representation of a policy . Type the command:
+```bash
+$ ./polgraph --policy-file out.policy --policy-graph tiger.dot ../examples/POMDPX/Tiger.pomdpx
+```
    The generated graph is written to "tiger.dot". You can view the output "tiger.dot" using Graphviz (http://www.graphviz.org/).  A pdf file generated from "tiger.dot" is in "../examples/POMDPX/tiger.pdf".
 
-- Try converting a POMDP file to POMDPX file format:
-    ./pomdpconvert ../examples/POMDP/Tiger.pomdp
-
-  The generated POMDPX file is in the same directory as the POMDP model file.
-
+&nbsp;
+4. Try converting a POMDP file to POMDPX file format:
+```bash
+ $ ./pomdpconvert ../examples/POMDP/Tiger.pomdp
+```
+  The generated POMDPX file is in the same directory as the POMDP model file.  
+  
 Sample results from the above commands are in "../examples/POMDPX/tiger.log".
 
-* For Windows with Microsoft Visual Studio 2008
-    Unpack the zip file
+### Windows
 
-    Open the solution file : src\momdp.sln
+&nbsp;
+For Windows with Microsoft Visual Studio 2008:
 
-    Select from Menu Build -> Build Solution
-    (generated binaries is in appl\src\release directory, pomdpsol.exe is the Solver, pomdpsim.exe is the Simulator, pomdpeval.exe is the Evaluator, polgraph is the policy graph generator.))
+* Unpack the zip file
+* Open the solution file : src\momdp.sln
+* Select from Menu Build -> Build Solution
 
-- Try solving an example problem:
-    Open up a command-line console:
-        1: Click on Start Menu -> Run
-        2: Key in "cmd" and press Enter
-    Go to the directory where the generated binaries are
-        Example (assume the source code is located at c:\appl\src):
-            c:
-            cd c:\appl\src\release
-    Key in command:
-        pomdpsol.exe ..\..\examples\POMDPX\Tiger.pomdpx
+Generated binaries is in appl\src\release directory, pomdpsol.exe is the Solver, pomdpsim.exe is the Simulator, pomdpeval.exe is the Evaluator, polgraph is the policy graph generator.
 
-    The policy will be written to "out.policy".
+&nbsp;
+Try solving an example problem:
 
--Try simulating the generated policy
-        pomdpsim.exe --simLen 100 --simNum 1000 --policy-file out.policy ..\..\examples\POMDPX\Tiger.pomdpx
+* Open up a command-line console:
+* Click on Start Menu -> Run
+* Key in "cmd" and press Enter
+* Go to the directory where the generated binaries are
+Example (assume the source code is located at c:\appl\src): 
+```bash
+$ cd c:\appl\src\release
+$ pomdpsol.exe ..\..\examples\POMDPX\Tiger.pomdpx
+```
+The policy will be written to "out.policy".
 
-  The simulation results are written to the console.
+&nbsp;
+Try simulating the generated policy
+```bash
+$ pomdpsim.exe --simLen 100 --simNum 1000 --policy-file out.policy ..\..\examples\POMDPX\Tiger.pomdpx
+```
+The simulation results are written to the console.
 
--Try evaluating the generated policy
-        pomdpeval.exe --simLen 100 --simNum 1000 --policy-file out.policy ..\..\examples\POMDPX\Tiger.pomdpx
+&nbsp;
+Try evaluating the generated policy
+```bash
+$ pomdpeval.exe --simLen 100 --simNum 1000 --policy-file out.policy ..\..\examples\POMDPX\Tiger.pomdpx
+```
+The evaluation results are written to the console.
 
-  The evaluation results are written to the console.
-
-- Try generating a graphical representation of a policy . Type the command:
-   	polgraph.exe --policy-file out.policy --policy-graph tiger.dot ..\..\examples\POMDPX\Tiger.pomdpx
-
-- Try converting a POMDP file to POMDPX file format:
-	pomdpconvert ..\examples\POMDP\Tiger.pomdp
-
-  The generated POMDPX file is in the same directory as the POMDP model file.
+&nbsp;
+Try generating a graphical representation of a policy . Type the command:
+```bash
+$ polgraph.exe --policy-file out.policy --policy-graph tiger.dot ..\..\examples\POMDPX\Tiger.pomdpx
+```
+&nbsp;
+Try converting a POMDP file to POMDPX file format:
+```bash
+$ pomdpconvert ..\examples\POMDP\Tiger.pomdp
+```
+The generated POMDPX file is in the same directory as the POMDP model file.
 
 
 ## Documentation
@@ -193,41 +212,41 @@ Please use the issue tracker.
 Fixed compilation issues with gcc version >= 4.7  
 Various matrix operation optimizations  
 
-*6-Mar-2012*
-Added support for intra-slice dependency between variables in POMDPX model. Only edges fully observable state X to partially observable state Y are allowed.
+*6-Mar-2012*  
+Added support for intra-slice dependency between variables in POMDPX model. Only edges fully observable state X to partially observable state Y are allowed.  
 
-*9-Aug-2011, version 0.95*
-IMPORTANT: Fixed a bug that caused pomdpsim to output wrong maximum likelihood unobserved state in log file
-Fixed a bug in parsing POMDPX file with XML comments (We thank Alex Goldhoorn for bug report and patch)
+*9-Aug-2011, version 0.95*  
+IMPORTANT: Fixed a bug that caused pomdpsim to output wrong maximum likelihood unobserved state in log file  
+Fixed a bug in parsing POMDPX file with XML comments (We thank Alex Goldhoorn for bug report and patch)  
 
-*28-Apr-2010, version 0.94*
-Fix a bug that terminal states are not correctly recognized in some model.
+*28-Apr-2010, version 0.94*  
+Fix a bug that terminal states are not correctly recognized in some model.  
 
-*22-Apr-2010, version 0.93*
-Solves MDP specified in POMDPX file format.  Output MDP solution in PolicyX format.
+*22-Apr-2010, version 0.93*  
+Solves MDP specified in POMDPX file format.  Output MDP solution in PolicyX format.  
 
-*12-Mar-2010, version 0.92*
-Fixed a bug in POMDPX file format parser when reward is a function of current state R(s',a).
-Output policy file in XML format.
-Added POMDP to POMDPX converter.
+*12-Mar-2010, version 0.92*  
+Fixed a bug in POMDPX file format parser when reward is a function of current state R(s',a).  
+Output policy file in XML format.  
+Added POMDP to POMDPX converter.  
 
-*24-Nov2009, version 0.91*
-Fixed several bugs in the POMDPX file format parser.
-Cleaned up POMDPX file format parser code and reduced memory usage.
+*24-Nov2009, version 0.91*  
+Fixed several bugs in the POMDPX file format parser.  
+Cleaned up POMDPX file format parser code and reduced memory usage.  
 
-*04-Sep-2009, version 0.9*
-Substantially restructured the code base.
-Added support for the new factored .pomdpx file format.
-The main POMDP solver now uses the SARSOP algorithm with the MOMDP representation.
-Added policy graph generator.
+*04-Sep-2009, version 0.9*  
+Substantially restructured the code base.  
+Added support for the new factored .pomdpx file format.  
+The main POMDP solver now uses the SARSOP algorithm with the MOMDP representation.  
+Added policy graph generator.  
 
-*01-Feb-2009, version 0.3*
-Added option for memory limit.
-Reduced memory usage.
-Added policy evaluator.
+*01-Feb-2009, version 0.3*  
+Added option for memory limit.  
+Reduced memory usage.  
+Added policy evaluator.  
 
-*25-Jul-2008, version 0.2*
-Minor bug fixes.
+*25-Jul-2008, version 0.2*  
+Minor bug fixes.  
 
-*01-Jul-2008, version 0.1*
-Initial release.
+*01-Jul-2008, version 0.1*  
+Initial release.  
