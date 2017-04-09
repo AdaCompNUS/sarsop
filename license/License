@@ -1,0 +1,5 @@
+LICENSE
+
+Part of APPL makes use of code based on an early version of ZMDP (http://www.cs.cmu.edu/~trey/zmdp/) released under Apache License 2.0. The POMDPX parser makes use of TinyXML (http://www.grinninglizard.com/tinyxml/) released under zlib License. The rest of APPL is released under GNU General Public License V2.
+
+The file "Notice" contains the list of files that are derived from ZMDP and modified by us and the list of files from TinyXML.

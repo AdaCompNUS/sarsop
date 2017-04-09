@@ -1,0 +1,243 @@
+Approximate POMDP Planning (APPL) Toolkit
+
+Copyright (c) 2008-2009 by National University of Singapore.
+
+Usage Guide
+
+========================================================================
+TABLE OF CONTENTS
+========================================================================
+
+* Synopsis
+* POMDP model file formats
+* Executable name and location for Linux
+* Executable name and location for Windows (Cygwin)
+* Executable name and location for Windows (Visual Studio)
+* Command-line options
+* Examples
+
+
+========================================================================
+SYNOPSIS
+========================================================================
+
+POMDP Solver
+    The solver uses SARSOP algorithm with the MOMDP representation and computes a policy for the input POMDP model. It writes the policy to a file named "out.policy" by default. SARSOP is an anytime algorithm. You may interrupt the program by pressing Ctrl-C, and the policy will be written out. You may also specify a desired precision for the output solution or a fixed timeout. When the termination condition is reached, the program will stop and write out the policy.
+
+Simulator
+    The simulator performs multiple independent simulation runs on a given policy and estimates its expected total reward.
+
+Evaluator
+    The evaluator also performs multiple independent simulation runs on a given policy and estimates its expected total reward. It is faster than the simulator, but requires more memory. You may use the "--memory" option to limit its memory usage.
+
+Policy graph generator
+    The policy graph generator generates a policy graph in DOT format. Use Graphviz (http://www.graphviz.org/) to view a graph in DOT format. 
+ 
+=======================================================================
+POMDP MODEL FILE FORMAT
+=======================================================================
+
+The input POMDP model can be in two file formats:
+
+* Tony Cassandra's POMDP format, with file extension name ".pomdp". See "doc/POMDP/PomdpFileFormat.html" for documentation.
+
+* The new POMDPX file format, with file extension name ".pomdpx". The new file format allows a factored representation of the POMDP model. It often results in files much smaller than the corresponding ones in the standard POMDP format. See "doc/POMDPX/PomdpxFileFormat.pdf" for documentation.
+  
+The POMDP solver, simulator, and evaluator handle the two file formats automatically according to the input file's extension name.
+
+
+=======================================================================
+EXECUTABLE NAME AND LOCATION FOR LINUX
+=======================================================================
+
+Executables are located at appl/src after compilation
+
+Executable names:
+POMDP Solver:
+    pomdpsol
+
+Simulator:
+    pomdpsim
+
+Evaluator:
+    pomdpeval
+
+Policy graph generator:
+    polgraph
+  
+  
+=======================================================================
+EXECUTABLE NAME AND LOCATION FOR WINDOWS (CYGWIN)
+=======================================================================
+
+Executables are located at appl/src after compilation
+
+Executable names:
+POMDP Solver:
+    pomdpsol.exe
+
+Simulator:
+    pomdpsim.exe
+
+Evaluator:
+    pomdpeval.exe
+
+Policy graph generator
+    polgraph.exe
+
+
+=======================================================================
+EXECUTABLE NAME AND LOCATION FOR WINDOWS (VISUAL STUDIO)
+=======================================================================
+
+Executables are located at appl/src/release by default after compilation
+
+Executable names:
+POMDP Solver:
+    pomdpsol.exe
+
+Simulator:
+    pomdpsim.exe
+
+Evaluator:
+    pomdpeval.exe
+
+Policy graph generator
+    polgraph.exe
+
+
+=======================================================================
+COMMAND-LINE OPTIONS
+=======================================================================
+
+* POMDP Solver:
+    pomdpsol POMDPModelFileName [--fast] [--precison targetPrecision] [--randomization] [--timeout timeLimit] [--memory memoryLimit] [--output policyFileName] [--policy-interval timeInterval] 
+    or
+    pomdpsol --help
+    or
+    pomdpsol --version
+
+    Solver options:
+        -f or --fast                         Use fast (but very picky) alternate parser for .pomdp files.
+	-p or --precision targetPrecision    Set targetPrecision as the target precision in solution quality; run ends when target precision is reached. The target precision is 1e-3 by default.
+	--randomization                      Turn on randomization for the sampling algorithm. Randomization is off by default.
+	--timeout timeLimit                  Use timeLimit as the timeout in seconds.  If running time exceeds the specified value, pomdpsol writes out a policy and terminates. There is no time limit by default.
+	--memory memoryLimit                 Use memoryLimit as the memory limit in MB. No memory limit by default.  If memory usage exceeds the specified value, pomdpsol writes out a policy and terminates. Set the value to be less than physical memory to avoid swapping.
+	--trial-improvement-factor improvementConstant   Use improvementConstant as the trial improvement factor in the sampling algorithm. At the default of 0.5, a trial terminates at a belief when the gap between its upper and lower bound is 0.5 of the current precision at the initial belief.
+
+   Output options:
+        -o or --output policyFileName        Use policyFileName as the name of policy output file. The file name is "out.policy" by default.
+	--policy-interval timeInterval       Use timeInterval as the time interval between two consecutive write-out of policy files. If this is not specified, pomdpsol only writes out a policy file upon termination.
+   
+    Miscellaneous options:
+        -h or --help                         Print help.
+        --version                            Print version information.
+
+* Simulator
+    pomdpsim POMDPModelFileName --policy-file policyFileName --simLen numberSteps --simNum numberSimulations [--fast] [--srand randomSeed] [--output-file outputFileName] 
+    or
+    pomdpsim --help
+    or
+    pomdpsim --version
+
+    Simulator options:
+        --policy-file policyFileName         Use policyFileName as the policy file name (compulsory).
+        --simLen numberSteps                 Use numberSteps as the number of steps for each simulation run (compulsory).
+        --simNum numberSimulations           Use numberSimulations as the number of simulation runs (compulsory).
+        -f or --fast                         Use fast (but very picky) alternate parser for .pomdp files.
+	--srand randomSeed                   Set randomSeed as the random seed for simulation. It is the current time by default.
+
+   Output options:
+	--output-file outputFileName         Use outputFileName as the name for the output file that contains the simulation trace.
+
+    Miscellaneous options:
+	-h or --help                         Print help.
+        --version                            Print version information.
+
+* Evaluator
+    pomdpeval POMDPModelFileName --policy-file policyFileName --simLen numberSteps --simNum numberSimulations [--fast] [--srand randomSeed] [--memory memoryLimit] [--output-file outputFileName]
+    or
+    pomdpeval --help
+    or
+    pomdpeval --version
+
+    Evaluator options:
+        --policy-file policyFileName        Use policyFileName as the policy file policy name (compulsory).
+        --simLen numberSteps                Use numberSteps as the number of steps for each simulation run (compulsory).
+        --simNum numberSimulations          Use numberSimulations as the number of simulation runs (compulsory).
+        -f or --fast                        Use fast (but very picky) alternate parser for .pomdp files.
+	--srand randomSeed                  Set randSeed as the random seed for simulation. It is the current time by default.
+        --memory memoryLimit                Use memoryLimit as the memory limit in MB. No memory limit by default. If memory usage exceeds the specified value, the evaluator will switch back to a more memory conservative (and slow) method.
+	
+    Output options:
+	--output-file outputFileName        Use outputFileName as the name for the output file that contains the evaluation trace.
+       
+    Miscellaneous options:
+       -h or --help                         Print help.
+        --version                           Print version information.
+
+* Policy graph generator
+    polgraph POMDPModelFileName --policy-file policyFileName --policy-graph policyGraphFileName [--fast] [--graph-max-depth maximumDepth]  [--graph-min-prob minimumProbability] [--graph-max-branch maximumNoOfBranches] 
+    or
+    polgraph --help
+    or
+    polgraph --version
+
+    Policy graph generator options:
+        --policy-file policyFileName        	Use policyFileName as the policy file name (compulsory).
+        -f or --fast                        	Use fast (but very picky) alternate parser for .pomdp files.
+	--graph-max-depth maximumDepth 	    	Use maximumDepth as the maximum horizon of the generated policy graph. There is no limit by default.
+	--graph-max-branch maximumNoOfBranches 	Use maximumNoOfBranches as the maximum number of branches to show in the policy graph.  The branches shown are the top maximumNofOfBranches branches in probability. There is no limit by default.
+	--graph-min-prob minimumProbability  	Use minimumProbabilty as the minimum probability threshold for a branch to be shown in the policy graph. Branches with probability less than the threshold are suppressed. The threshold is zero by default.
+
+    Output options
+        --policy-graph policyGraphFileName  	Use policyGraphFileName as the name for the DOT file to be generated (compulsory).
+
+    Miscellaneous options:
+        -h or --help                         Print help.
+        --version                            Print version information
+
+Use Graphviz to visualise the DOT file generated. Graphviz can be downloaded from www.graphviz.org
+
+* POMDP to POMDPX converter
+    pomdpconvert POMDPModelFileName
+    or
+    pomdpconvert --help
+    or
+    pomdpconvert --version
+
+    Miscellaneous options:
+        -h or --help                         Print help.
+        --version                            Print version information
+
+=======================================================================
+EXAMPLES
+=======================================================================
+
+     pomdpsol Hallway.pomdp
+        Solve the POMDP problem "Hallway.pomdp". The solver will terminate when you press Ctrl+C. The policy will be written to out.policy
+		
+     pomdpsol Hallway.pomdpx
+        Solve the POMDPX problem "Hallway.pomdpx". The solver can handle both POMDP and POMDPX file formats. It automatically determines the file format using the file extension name.
+    
+     pomdpsol --timeout 100 --output hallway.policy Hallway.pomdp
+        Solve the POMDP problem "Hallway.pomdp". The solver will run for 100 seconds. The policy will be written to "hallway.policy"
+
+     pomdpsol --memory 2400 --output hallway.policy Hallway.pomdp
+        Solve the POMDP problem "Hallway.pomdp". The solver will run until it uses about 2400 megabytes of memory. The policy will be written to "hallway.policy"
+    
+     pomdpsol --precision 0.5 --output hallway.policy Hallway.pomdp
+        Solve the POMDP problem "Hallway.pomdp". The solver will run until the policy has regret less than 0.5. The policy will be written to "hallway.policy"
+
+     pomdpsim --policy-file hallway.policy --simLen 100 --simNum 200 Hallway.pomdp
+        Simulate the policy file "hallway.policy" for 200 simulations with each simulation consisting of 100 steps. Note that the policy file must be generated from Hallway.pomdp.
+	Note: The simulator prints "Expected Total Reward" (ETR for short) of the policy file.
+ 
+     pomdpeval --policy-file hallway.policy --simLen 100 --simNum 200 --memory 2000 Hallway.pomdp
+        Evaluate the policy file "hallway.policy" for 200 simulations with each simulation consist of 100 steps with memory usage limited to 2000 megabytes.
+	
+     polgraph --policy-file hallway.policy --policy-graph Hallway.dot --graph-max-depth 5 Hallway.pomdp 
+     	Generate a policy graph up to depth 5 to file "Hallway.dot"
+
+    pomdpconvert Hallway.pomdp
+	Generate a POMDPX version of the model to "Hallway.pomdpx"

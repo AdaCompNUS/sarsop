@@ -1,0 +1,106 @@
+Approximate POMDP Planning (APPL) Toolkit
+
+Copyright (c) 2008-2009 by National University of Singapore.
+
+Installation Guide
+
+========================================================================
+TABLE OF CONTENTS
+========================================================================
+
+* Compilation Environment
+* Compilation under Linux or Windows (Cygwin)
+* Compilation under Windows using Microsoft Visual Studio
+
+
+========================================================================
+COMPILATION ENVIRONMENT
+========================================================================
+
+Operating systems:        Linux
+                          Mac OS X (unofficial) 
+                          Windows (unofficial)
+
+Tested compilers:         gcc/g++ 4.0.1 under Linux
+                          gcc/g++ 4.1.2 under Linux
+                          gcc/g++ 4.2.3 under Linux
+                          gcc/g++ 4.3.2 under Linux
+                          gcc/g++ 4.4.0 under Linux
+                          gcc/g++ 3.4.4 under Windows(Cygwin)
+                          Microsoft Visual C++ 9 in Visual Studio 2008 with SP1 under Windows
+
+* General
+  For gcc/g++ tool chain, GNU make is required for building.
+
+* Mac OS X
+  - For Mac OS X, physical memory size cannot be automatically determined yet. Currently APPL will assume 1G physical memory for Mac OS X. If your physical memory size is different, use "--memory" command-line option to set the correct memory limit.
+  
+  - For Mac using PowerPC processor, remove the option "-msse2 -mfpmath=sse" from CFLAGS in src/Makefile.
+
+* Windows (Visual Studio)
+  The Visual Studio port is still experimental. The generated binaries may behave differently from its Linux counterpart.
+
+
+
+========================================================================
+COMPILATION UNDER LINUX OR WINDOWS (CYGWIN)
+========================================================================
+
+* Unpack the zip file
+    unzip appl.zip
+    
+* Build:
+    cd appl/src
+    make
+    (Generated binaries is in current directory, "pomdpsol" is the Solver, "pomdpsim" is the Simulator, "pomdpeval" is the Evaluator. Please read Usage.txt for command-line options)
+    
+* Try solving an example problem:
+    From the src/ directory, key in command in console:
+        ./pomdpsol ../examples/POMDPX/Tiger.pomdpx
+    (The policy will be written to 'out.policy'.)    
+
+* Try simulating the generated policy
+    From the src/ directory, key in command in console:
+        ./pomdpsim --simLen 100 --simNum 1000 --policy-file out.policy ../examples/POMDPX/Tiger.pomdpx
+    (The simulation result will be displayed.)
+
+    
+=========================================================================
+COMPILATION UNDER WINDOWS USING MICROSOFT VISUAL STUDIO
+=========================================================================
+
+* Unpack the zip file
+    Use WinZip/WinRAR/7-Zip
+    
+    IMPORTANT: Please make sure that the path to the extracted files does NOT contain white space, or else Visual Studio will display linking error saying that it cannot locate some obj files
+
+* Build:
+    Open the solution file : src\momdp.sln
+    Select from Menu Build -> Build Solution
+    (Generated binaries is in appl\src\release directory, pomdpsol.exe is the Solver, pomdpsim.exe is the Simulator, pomdpeval.exe is the Evaluator, polgraph.exe is the policy graph generator.)
+
+* Try solving an example problem:
+    Open up a command-line console:
+        1: Click on Start Menu -> Run
+        2: Key in "cmd" and press Enter
+    Go to the directory where the generated binaries are
+        Example (assume the source code is located at c:\appl\src):
+            c: 
+            cd c:\appl\src\release
+    Key in command:
+        pomdpsol.exe ..\..\examples\POMDPX\Tiger.pomdpx
+    
+    (The policy will be written to 'out.policy'.)
+
+* Try simulating the generated policy
+    Open up a command-line console:
+        1: Click on Start Menu -> Run
+        2: Key in "cmd" and press Enter
+    Go to the directory where the generated binaries are
+        Example (assume the source code is located at c:\appl\src):
+            c: 
+            cd c:\appl\src\release
+    Key in command:
+        pomdpsim.exe --simLen 100 --simNum 1000 --policy-file out.policy ..\..\examples\POMDPX\Tiger.pomdpx
+
+    (The simulation result will be displayed.)

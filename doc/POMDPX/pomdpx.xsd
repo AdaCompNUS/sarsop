@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="pomdpx">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="Description" />
+        <xs:element minOccurs="1" maxOccurs="1" ref="Discount" />
+        <xs:element minOccurs="1" maxOccurs="1" ref="Variable" />
+	<xs:choice minOccurs = "1" maxOccurs="unbounded">
+		<xs:element ref = "RewardFunction" />
+		<xs:element ref = "ObsFunction" /> 
+		<xs:element ref = "InitialStateBelief" /> 
+		<xs:element ref = "StateTransitionFunction" /> 
+	</xs:choice>
+      </xs:sequence>
+      <xs:attribute name="version" type="xs:float" use="required" />
+      <xs:attribute name="id" type="xs:token" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:element name="Description" type="xs:string" />
+  <xs:element name="Discount">
+    <xs:simpleType>
+      <xs:restriction base="xs:decimal">
+        <xs:minInclusive value="0" />
+        <xs:maxExclusive value="1" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Variable">
+    <xs:complexType>
+      <xs:choice minOccurs="1" maxOccurs="unbounded">
+        <xs:element ref="StateVar" />
+        <xs:element ref="ActionVar" />
+        <xs:element ref="RewardVar" />
+        <xs:element minOccurs="0" ref="ObsVar" />
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RewardFunction" type="containsFuncs" />
+  <xs:element name="ObsFunction" type="containsCondProbs" />
+  <xs:element name="InitialStateBelief" type="containsCondProbs" />
+  <xs:element name="StateTransitionFunction" type="containsCondProbs" />
+  <xs:element name="ActionVar" type="actobsType" />
+  <xs:element name="ObsVar" type="actobsType" />
+  <xs:element name="StateVar">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="1">
+        <xs:element ref="ValueEnum" />
+        <xs:element ref="NumValues" />
+      </xs:choice>
+      <xs:attribute name="vnamePrev" type="xs:token" use="required" />
+      <xs:attribute name="vnameCurr" type="xs:token" use="required" />
+      <xs:attribute default="false" name="fullyObs" type="xs:boolean" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RewardVar">
+    <xs:complexType>
+      <xs:attribute name="vname" type="xs:token" use="required" />
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="actobsType">
+    <xs:choice minOccurs="0" maxOccurs="1">
+      <xs:element ref="ValueEnum" />
+      <xs:element ref="NumValues" />
+    </xs:choice>
+    <xs:attribute name="vname" type="xs:token" use="required" />
+  </xs:complexType>
+  <xs:element name="ValueEnum" type="idList" />
+  <xs:element name="NumValues">
+    <xs:simpleType>
+      <xs:restriction base="xs:integer">
+        <xs:minInclusive value="2" />
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:complexType name="containsFuncs">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="unbounded" ref="Func" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="containsCondProbs">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="unbounded" ref="CondProb" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Func" type="FuncCondprobType" />
+  <xs:element name="CondProb" type="FuncCondprobType" />
+  <xs:complexType name="FuncCondprobType">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" ref="Var" />
+      <xs:element minOccurs="1" maxOccurs="1" ref="Parent" />
+      <xs:element minOccurs="1" maxOccurs="1" ref="Parameter" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Var" type="idList" />
+  <xs:element name="Parent" type="idList" />
+  <xs:element name="Parameter">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="Entry" />
+        <xs:element ref="DAG" />
+        <xs:element ref="SubDAGTemplate" />
+      </xs:choice>
+      <xs:attribute default="TBL" name="type" type="paramTypeDefn" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Entry">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="1" name="Instance" type="idOrIntList" />
+        <xs:choice minOccurs="0" maxOccurs="1">
+          <xs:element name="ProbTable" type="stringOrProbFloatList" />
+          <xs:element name="ValueTable" type="floatList" />
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DAG">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element minOccurs="0" maxOccurs="1" ref="Node" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="SubDAG" />
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SubDAGTemplate">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element minOccurs="0" maxOccurs="1" ref="Node" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="SubDAG" />
+      </xs:choice>
+      <xs:attribute name="id" type="xs:token" use="required" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Node">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="1" maxOccurs="unbounded" ref="Edge" />
+      </xs:sequence>
+      <xs:attribute name="var" type="xs:token" use="required" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Edge">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element minOccurs="0" maxOccurs="1" ref="Node" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="SubDAG" />
+        <xs:element minOccurs="0" maxOccurs="1" ref="Terminal" />
+      </xs:choice>
+      <xs:attribute name="val" type="idOrNonneginteger" use="required" />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Terminal" type="xs:float" />
+  <xs:element name="SubDAG">
+    <xs:complexType>
+      <xs:attribute name="type" type="subDAGtypeDefn" use="required" />
+      <xs:attribute name="var" type="xs:token" />
+      <xs:attribute name="val" type="idOrNonneginteger" />
+      <xs:attribute name="idref" type="xs:token" />
+    </xs:complexType>
+  </xs:element>
+
+  <xs:simpleType name="idOrNonneginteger">
+    <xs:union memberTypes="xs:token xs:nonNegativeInteger" />
+  </xs:simpleType>
+  <xs:simpleType name="idList">
+    <xs:list itemType="xs:token" />
+  </xs:simpleType>
+  <xs:simpleType name="floatList">
+    <xs:list itemType="xs:float" />
+  </xs:simpleType>
+  <xs:simpleType name="probFloatList">
+    <xs:list itemType="probFloat" />
+  </xs:simpleType>
+  <xs:simpleType name="probFloat">
+    <xs:restriction base="xs:float">
+      <xs:minInclusive value="0.0" />
+      <xs:maxInclusive value="1.0" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="idOrIntList">
+    <xs:union memberTypes="idList nonNegList asteriksDashList" />
+  </xs:simpleType>
+  <xs:simpleType name="nonNegList">
+    <xs:list itemType="xs:nonNegativeInteger" />
+  </xs:simpleType>
+  <xs:simpleType name="asteriksDash">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="*" />
+      <xs:enumeration value="-" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="asteriksDashList">
+    <xs:list itemType="asteriksDash" />
+  </xs:simpleType>
+  <xs:simpleType name="identityUniform">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="identity" />
+      <xs:enumeration value="uniform" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="stringOrProbFloatList">
+    <xs:union memberTypes="probFloatList identityUniform" />
+  </xs:simpleType>
+  <xs:simpleType name="paramTypeDefn">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="TBL" />
+      <xs:enumeration value="DD" />
+      <xs:enumeration value="CONT" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="subDAGtypeDefn">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="deterministic" />
+      <xs:enumeration value="persistent" />
+      <xs:enumeration value="uniform" />
+      <xs:enumeration value="template" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
