@@ -14,21 +14,18 @@ For bug reports and suggestions, please email <motion@comp.nus.edu.sg>.
 [2] S.C.W. Ong, S.W. Png, D. Hsu, and W.S. Lee. POMDPs for robotic tasks with mixed observability. In Proc. Robotics: Science and Systems, 2009.
 
 
-========================================================================
-TABLE OF CONTENTS
-========================================================================
 
-* Requirements
-* Quick start
-* Documentation
-* Package contents
-* Acknowledgments
-* Release notes
+## Table of Contents
+
+* [Requirements](#requirements)
+* [Quick Start](#quick-start)
+* [Documentation](#documentation)
+* [Package Contents](#package-contents)
+* [Acknowledgments](#acknowledgements)
+* [Release Notes](#release-notes)
 
 
-========================================================================
-REQUIREMENTS
-========================================================================
+## Requirements
 
 Operating systems:        Linux
                           Mac OS X (unofficial)
@@ -55,9 +52,7 @@ Tested compilers:         gcc/g++ 4.0.1 under Linux
   The Visual Studio port is experimental. The generated binaries may behave differently from its Linux counterpart.
   For Visual Studio 2010, refer to FAQ at http://bigbird.comp.nus.edu.sg/pmwiki/farm/appl/index.php?n=Main.FAQ for more information
 
-========================================================================
-QUICK START
-========================================================================
+## Quick Start
 
 * For Linux or Windows (Cygwin), at the top-level directory, type the commands:
 
@@ -142,16 +137,12 @@ Sample results from the above commands are in "../examples/POMDPX/tiger.log".
   The generated POMDPX file is in the same directory as the POMDP model file.
 
 
-========================================================================
-DOCUMENTATION
-========================================================================
+## Documentation
 
 Documentation can be found in the directory "doc". See PACKAGE CONTENTS for a detailed listing.
 
 
-========================================================================
-PACKAGE CONTENTS
-========================================================================
+## Package Contents
 
 README.txt                                This file
 doc/FAQ.txt				  Frequently asked questions
@@ -184,16 +175,13 @@ src/PolicyGraph/PolicyGraph.vcproj	  Visual Studio 2008 Project file for Policy 
 src/momdp.sln                             Visual Studio 2008 solution
 
 
-========================================================================
-ACKNOWLEDGMENTS
-========================================================================
+## Acknowledgements
 
 Part of the APPL toolkit makes use of code based on an early version of ZMDP by Trey Smith (http://www.cs.cmu.edu/~trey/zmdp/). ZMDP in turn uses code from pomdp-solve by Tony Cassandra (http://www.cassandra.org/pomdp/code/index.shtml). The POMDPX parser uses TinyXML by Lee Thomason (http://www.grinninglizard.com/tinyxml/).
 
 
-========================================================================
-RELEASE NOTES
-========================================================================
+## Release Notes
+
 9-Jun-2014
 * Fixed compilation issues with gcc version >= 4.7
 * Various matrix operation optimizations
