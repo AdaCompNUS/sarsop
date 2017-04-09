@@ -189,9 +189,9 @@ Please use the issue tracker.
 
 ## Release Notes
 
-*9-Jun-2014* 
-Fixed compilation issues with gcc version >= 4.7 
-Various matrix operation optimizations
+*9-Jun-2014*  
+Fixed compilation issues with gcc version >= 4.7  
+Various matrix operation optimizations  
 
 *6-Mar-2012*
 Added support for intra-slice dependency between variables in POMDPX model. Only edges fully observable state X to partially observable state Y are allowed.
