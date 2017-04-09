@@ -76,7 +76,6 @@ Please read [doc/Usage.txt](doc/Usage.text) for command-line options.
 
 ### Unix
 
-&nbsp;
 1. Try solving an example problem. Type the command:
 ```bash
 $ ./pomdpsol ../examples/POMDPX/Tiger.pomdpx
