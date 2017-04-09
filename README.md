@@ -7,7 +7,7 @@ APPL is a C++ implementation of the SARSOP algorithm <sup>1</sup>, using the fac
 
 [1] [**SARSOP: Efficient point-based POMDP planning by approximating optimally reachable belief spaces.**](http://www.roboticsproceedings.org/rss04/p9.pdf) *H. Kurniawati, D. Hsu, and W.S. Lee*. In Proc. Robotics: Science and Systems, 2008.
 
-[2] [**POMDPs for robotic tasks with mixed observability.**](http://www.roboticsproceedings.org/rss05/p26.pdf *S.C.W. Ong, S.W. Png, D. Hsu, and W.S. Lee*. In Proc. Robotics: Science and Systems, 2009.
+[2] [**POMDPs for robotic tasks with mixed observability.**](http://www.roboticsproceedings.org/rss05/p26.pdf) *S.C.W. Ong, S.W. Png, D. Hsu, and W.S. Lee*. In Proc. Robotics: Science and Systems, 2009.
 
 [Copyright (c) 2008-2010 by National University of Singapore.](http://motion.comp.nus.edu.sg/projects/pomdp/pomdp.html)
 
