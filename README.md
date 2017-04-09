@@ -48,6 +48,7 @@ Tested compilers:
 General:
   For gcc/g++ tool chain, GNU make is required for building.
 
+
 Windows:
 The Visual Studio port is experimental. The generated binaries may behave differently from its Linux counterpart.
   For Visual Studio 2010, refer to FAQ at http://bigbird.comp.nus.edu.sg/pmwiki/farm/appl/index.php?n=Main.FAQ for more information
@@ -188,8 +189,8 @@ Please use the issue tracker.
 
 ## Release Notes
 
-*9-Jun-2014*
-Fixed compilation issues with gcc version >= 4.7
+*9-Jun-2014* 
+Fixed compilation issues with gcc version >= 4.7 
 Various matrix operation optimizations
 
 *6-Mar-2012*
