@@ -28,7 +28,7 @@ APPL is a C++ implementation of the SARSOP algorithm <sup>1</sup>, using the fac
 Tested Operating systems: 
 
 * Linux 
-* Mac OS X (unofficial) 
+* Mac OS X (unofficial) (see a fork tested on OSX 10.15.2 [here](https://github.com/personalrobotics/appl))
 * Windows (unofficial)
 
 
